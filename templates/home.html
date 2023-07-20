@@ -18,10 +18,14 @@
       padding: 0;
     }
 
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+
     .login {
       background-color: #fff;
-      max-width: 400px;
-      margin: 20px auto;
       padding: 20px;
       border-radius: 5px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -57,33 +61,39 @@
     .login form button:hover {
       background-color: #16a085;
     }
+
+    .prediction {
+      text-align: center;
+      font-size: 24px;
+      margin-top: 30px;
+    }
   </style>
 
 </head>
 
 <body>
-  <div class="login">
-    <h1>House Price Prediction</h1>
+  <div class="container">
+    <div class="login">
+      <h1>House Price Prediction</h1>
 
-    <!-- Main Input For Receiving Query to our ML -->
-    <form action="{{ url_for('predict')}}" method="post">
-      <input type="text" name="TD" placeholder="Transaction Date" required="required" /><br>
-      <input type="text" name="HA" placeholder="House Age" required="required" /><br>
-      <input type="text" name="DNMS" placeholder="Nearest Station" required="required" /><br>
-      <input type="text" name="NSC" placeholder="Nearest Store" required="required" /><br>
-      <input type="text" name="LAT" placeholder="Latitude" required="required" /><br>
-      <input type="text" name="LONG" placeholder="Longitude" required="required" /><br>
+      <!-- Main Input For Receiving Query to our ML -->
+      <form action="{{ url_for('predict')}}" method="post">
+        <input type="text" name="TD" placeholder="Transaction Date" required="required" /><br>
+        <input type="text" name="HA" placeholder="House Age" required="required" /><br>
+        <input type="text" name="DNMS" placeholder="Nearest Station" required="required" /><br>
+        <input type="text" name="NSC" placeholder="Nearest Store" required="required" /><br>
+        <input type="text" name="LAT" placeholder="Latitude" required="required" /><br>
+        <input type="text" name="LONG" placeholder="Longitude" required="required" /><br>
 
+        <button type="submit">Predict</button>
+      </form>
+    </div>
 
-      <button type="submit">Predict</button>
-    </form>
-
-    <br>
-    <br>
+    <div class="prediction">
+      {{prediction_text}}
+    </div>
 
   </div>
-  {{prediction_text}}
-
 </body>
 
 </html>
